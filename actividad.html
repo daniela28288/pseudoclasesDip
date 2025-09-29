@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actividad: Pseudoclases CSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00f5ff;
+      --secondary: #ff006e;
+      --accent: #8338ec;
+      --bg: #111;
+      --text: #f1f1f1;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      color: var(--primary);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 0.5rem;
+    }
+
+    .demo {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #222;
+      border: 1px dashed var(--primary);
+      border-radius: 0.5rem;
+    }
+
+    .button {
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    /* === Estilos de ejemplo para la actividad === */
+    .hover-button:hover {
+      transform: scale(1.1);
+      background-color: var(--primary);
+    }
+
+    .focus-input:focus {
+      border: 2px solid var(--primary);
+      outline: none;
+    }
+
+    .active-button:active {
+      transform: scale(0.9);
+      background-color: var(--secondary);
+    }
+
+    .example-list li:first-child {
+      color: var(--primary);
+    }
+
+    .example-list li:last-child {
+      color: var(--secondary);
+    }
+
+    .example-list li:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .example-list li:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .formulario input:invalid {
+      border: 2px solid red;
+    }
+
+    .formulario input:valid {
+      border: 2px solid green;
+    }
+
+    .not-demo div:not(.especial) {
+      opacity: 0.3;
+    }
+
+    label:has(input:checked) {
+      font-weight: bold;
+      color: lime;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧪 Actividad: Explorando Pseudoclases CSS</h1>
+  <p>Completa los siguientes ejercicios observando cómo cambian los estilos con base en el estado de los elementos.</p>
+
+  <div class="section">
+    <h2>1. :hover</h2>
+    <p>Pasa el mouse sobre el botón para activar la pseudoclase <code>:hover</code>.</p>
+    <div class="demo">
+      <button class="button hover-button">Pásame el mouse 😎</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. :focus</h2>
+    <p>Haz clic en el campo o usa la tecla Tab para ver <code>:focus</code>.</p>
+    <div class="demo">
+      <input type="text" class="focus-input" placeholder="Haz clic aquí">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. :active</h2>
+    <p>Haz clic (y mantén presionado) el botón para activar <code>:active</code>.</p>
+    <div class="demo">
+      <button class="button active-button">Haz clic fuerte 💪</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. :first-child / :last-child / :nth-child()</h2>
+    <p>Observa cómo se aplican estilos a los elementos según su posición.</p>
+    <ul class="demo example-list">
+      <li>Elemento 1 (first-child)</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+      <li>Elemento 4</li>
+      <li>Elemento 5 (last-child)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. :valid / :invalid</h2>
+    <p>Escribe un email válido e inválido para ver cómo cambia el borde.</p>
+    <div class="demo">
+      <form class="formulario">
+        <input type="email" placeholder="Escribe tu email" required>
+      </form>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. :not()</h2>
+    <p>Solo el elemento con clase <code>.especial</code> mantiene la opacidad total.</p>
+    <div class="demo not-demo">
+      <div>Elemento normal</div>
+      <div class="especial">Elemento especial</div>
+      <div>Otro elemento normal</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. :has() (solo funciona en navegadores compatibles)</h2>
+    <p>Marca el checkbox y observa cómo cambia el texto del label. (<strong>Funciona en Chrome/Safari</strong>)</p>
+    <div class="demo">
+      <label>
+        <input type="checkbox" />
+        Acepto los términos
+      </label>
+    </div>
+  </div>
+
+</body>
+</html>

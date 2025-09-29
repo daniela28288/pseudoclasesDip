@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudoclases CSS - Masterclass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="glitch">PSEUDOCLASES CSS</h1>
+            <p>Introducción a CSS intermedio/avanzado</p>
+        </header>
+
+        <!-- Introducción -->
+        <section class="section">
+            <h2>¿Qué son las Pseudoclases?</h2>
+            <p>Las pseudoclases son selectores especiales que nos permiten aplicar estilos a elementos basándose en su estado o posición, sin necesidad de agregar clases adicionales en el HTML. Se identifican por el símbolo <strong>:</strong> (dos puntos).</p>
+            
+            <div class="code-block">
+                <code code class="language-css">
+                    selector:pseudoclase {<br>
+                    &nbsp;&nbsp;propiedad: valor;<br>
+                    }
+                </code>
+            </div>
+
+            <h3>Diferencia clave: Pseudoclases vs Pseudo-elementos</h3>
+            <div class="example-grid">
+                <div class="example-card">
+                    <h4>✅ Pseudoclases (un :)</h4>
+                    <p>Seleccionan elementos basándose en su <strong>estado</strong> o <strong>posición</strong></p>
+                    <div class="code-block">
+                        <code code class="language-css">button:hover { }</code>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <h4>❌ Pseudo-elementos (dos ::)</h4>
+                    <p>Crean elementos virtuales o seleccionan partes específicas</p>
+                    <div class="code-block">
+                        <code code class="language-css">p::before { }</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pseudoclases de Estado -->
+        <section class="section">
+            <h2>Pseudoclases de Estado</h2>
+            
+            <h3>:hover </h3>
+            <p>Se activa cuando el usuario pasa el cursor sobre el elemento.</p>
+            
+            <div class="demo-container">
+                <div class="hover-demo">
+                    ¡Pasa el cursor sobre mí!
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code class="language-css">
+                    .hover-demo:hover {<br>
+                    &nbsp;&nbsp;transform: scale(1.1) rotate(2deg);<br>
+                    &nbsp;&nbsp;box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);<br>
+                    &nbsp;&nbsp;background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);<br>
+                    }
+                </code></pre>
+            </div>
+
+            <h3>:focus</h3>
+            <p>Se activa cuando un elemento recibe el foco (generalmente mediante tabulación o clic).</p>
+            
+            <div class="demo-container">
+                <input type="text" class="focus-demo" placeholder="Haz clic aquí o usa Tab">
+                <button class="focus-demo">Botón enfocable</button>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    .focus-demo:focus {<br>
+                    &nbsp;&nbsp;outline: none;<br>
+                    &nbsp;&nbsp;box-shadow: 0 0 20px var(--primary-color);<br>
+                    &nbsp;&nbsp;background: rgba(0, 245, 255, 0.1);<br>
+                    &nbsp;&nbsp;transform: scale(1.05);<br>
+                    }
+                </code></pre>
+            </div>
+
+            <h3>:active</h3>
+            <p>Se activa mientras el usuario mantiene presionado el elemento.</p>
+            
+            <div class="demo-container">
+                <button class="active-demo">¡Manténme presionado!</button>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    .active-demo:active {<br>
+                    &nbsp;&nbsp;transform: scale(0.95);<br>
+                    }
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Pseudoclases Estructurales -->
+        <section class="section">
+            <h2>Pseudoclases Estructurales</h2>
+            
+            <h3>:nth-child()</h3>
+            <p>Selecciona elementos basándose en su posición entre hermanos.</p>
+            
+            <div class="demo-container">
+                <div class="nth-child-demo">
+                    <div class="nth-item">1</div>
+                    <div class="nth-item">2</div>
+                    <div class="nth-item">3</div>
+                    <div class="nth-item">4</div>
+                    <div class="nth-item">5</div>
+                    <div class="nth-item">6</div>
+                    <div class="nth-item">7</div>
+                    <div class="nth-item">8</div>
+                    <div class="nth-item">9</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    /* Elementos impares (1, 3, 5...) */<br>
+                    .nth-item:nth-child(odd) {<br>
+                    &nbsp;&nbsp;background: var(--gradient-1);<br>
+                    &nbsp;&nbsp;transform: rotate(5deg);<br>
+                    }<br><br>
+
+                    /* Elementos pares (2, 4, 6...) */<br>
+                    .nth-item:nth-child(even) {<br>
+                    &nbsp;&nbsp;background: var(--gradient-2);<br>
+                    &nbsp;&nbsp;transform: rotate(-5deg);<br>
+                    }<br><br>
+
+                    /* Cada tercer elemento (3, 6, 9...) */<br>
+                    .nth-item:nth-child(3n) {<br>
+                    &nbsp;&nbsp;background: var(--gradient-4);<br>
+                    &nbsp;&nbsp;transform: scale(1.2);<br>
+                    &nbsp;&nbsp;border-radius: 50%;<br>
+                    }
+                </code></pre>
+            </div>
+
+            <h3>:first-child y :last-child</h3>
+            <p>Seleccionan el primer y último hijo respectivamente.</p>
+            
+            <div class="demo-container">
+                <div class="first-last-demo">
+                    <div class="child-item">Primer hijo</div>
+                    <div class="child-item">Hijo del medio</div>
+                    <div class="child-item">Otro hijo</div>
+                    <div class="child-item">Último hijo</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    .child-item:first-child {<br>
+                    &nbsp;&nbsp;background: var(--gradient-1);<br>
+                    &nbsp;&nbsp;transform: scale(1.1);<br>
+                    &nbsp;&nbsp;box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);<br>
+                    }<br><br>
+
+                    .child-item:last-child {<br>
+                    &nbsp;&nbsp;background: var(--gradient-2);<br>
+                    &nbsp;&nbsp;transform: scale(1.1);<br>
+                    &nbsp;&nbsp;box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);<br>
+                    }
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Pseudoclase :not() -->
+        <section class="section">
+            <h2>:not() - La Pseudoclase de Negación</h2>
+            <p>Selecciona todos los elementos que NO coinciden con el selector especificado.</p>
+            
+            <div class="demo-container">
+                <div class="not-demo">
+                    <div class="not-item">Normal</div>
+                    <div class="not-item special">Especial</div>
+                    <div class="not-item">Normal</div>
+                    <div class="not-item">Normal</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    /* Todos los elementos EXCEPTO los que tienen clase 'special' */<br>
+                    .not-item:not(.special) {<br>
+                    &nbsp;&nbsp;opacity: 0.5;<br>
+                    &nbsp;&nbsp;filter: grayscale(100%);<br>
+                    }<br><br>
+
+                    .not-item.special {<br>
+                    &nbsp;&nbsp;background: var(--gradient-4);<br>
+                    &nbsp;&nbsp;transform: scale(1.1);<br>
+                    &nbsp;&nbsp;box-shadow: 0 0 20px rgba(67, 233, 123, 0.5);<br>
+                    }
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- psudoclase has -->
+        <section class="section" >
+ <h1 class="titulo-subrayado">
+        <h3>:has</h3>
+    </h1>
+    <p>El combinador o pseudoclase :has() permite seleccionar un elemento contenedor, siempre y cuando sus elementos hijos (descendientes) cumplan los criterios indicados por los parámetros de :has(), lo que comunmente siempre se ha denominado el selector padre.</p>
+    <br>
+
+    <div class="code-block">
+        <img src="img/ejemplo3.png" alt="">
+    </div>
+
+    <a class="anchor" href="">
+        ancla sin imagen
+    </a>
+
+    <!-- EN ESTA ANCLA APLICA EL :HAS -->
+    <a class="anchor" href="" style="margin-left: 30px;">
+        <img src="img/image-removebg-preview (1).png"  alt="imagen">
+        ancla con imagen
+    </a>
+
+    <br><br>
+
+    <ul>
+      <li>En el primer caso, aplicamos estilos a TODOS los enlaces </li>
+      <li>En el segundo caso, aplicamos estilos a todos los enlaces que contengan una imagen</li>
+    </ul>
+    
+    <p>Sin embargo, recuerda que podemos añadir más selectores antes, después o el interior del :has(), consiguiendo criterios más complejos y potentes.</p>
+
+    <h3 class="titulo-subrayado">
+        <span class="blanco">Selector de estados </strong></span>
+        <span class="amarillo">:has()</span>
+    </h3>
+
+    <p>Quizás el detalle más interesante del combinador o selector :has() es que lo podemos utilizar para controlar estados de ciertos elementos de la página. Para ello, podemos utilizar pseudoclases como :checked o :hover, por ejemplo.
+
+    El siguiente ejemplo permite cambiar el diseño de un elemento, dependiendo de una casilla que no tiene relación directa:.</p>
+
+    <p>Esto abre la puerta a interacciones dinámicas puramente con CSS, sin depender de JavaScript para detectar acciones del usuario.</p>
+
+        <br>
+    <div class="code-block">
+        <img src="img/ejemplo4.png" alt="">
+    </div>
+    <br>
+    
+    <!-- ejemplo un poco mas avanzado -->
+    <label>
+    <input type="checkbox" />
+    Activar opción A
+    </label>
+
+    <label>
+    <input type="checkbox" checked />
+    Activar opción B
+    </label>
+
+    <label>
+    <input type="checkbox" />
+    Activar opción C
+    </label>
+
+    <!-- fin del ejemplo -->
+    <br><br>
+
+    <p>Este patrón es especialmente útil en formularios o interfaces interactivas, donde se desea mostrar visualmente un estado activo o seleccionado, y tradicionalmente requería JavaScript para lograrse.</p>
+
+    
+    <div class="cuadro-info">
+        <p>
+            Observa que gracias a <span class="azul">:has()</span>, ahora es posible realizar este tipo de comportamiento de forma declarativa y limpia directamente desde el <span class="azul">CSS. </span>
+        </p>
+    </div>
+
+    <h3 class="titulo-subrayado">
+        <span class="blanco">Selector contextual</strong></span>
+        <span class="amarillo">:has()</span>
+    </h3>
+
+    <div class="acordeon">
+    <section>
+        <input type="radio" name="acordeon" id="section1" checked />
+        <label for="section1">Sección 1</label>
+        <div class="content">
+        <p>Contenido de la sección 1.</p>
+        </div>
+    </section>
+
+    <section>
+        <input type="radio" name="acordeon" id="section2" />
+        <label for="section2">Sección 2</label>
+        <div class="content">
+        <p>Contenido de la sección 2.</p>
+        </div>
+    </section>
+
+    <section>
+        <input type="radio" name="acordeon" id="section3" />
+        <label for="section3">Sección 3</label>
+        <div class="content">
+        <p>Contenido de la sección 3.</p>
+        </div>
+    </section>
+    </div>
+
+    <h3 class="titulo-subrayado">
+        <span class="blanco">Detalles importantes sobre</strong></span>
+        <span class="amarillo">:has()</span>
+    </h3>
+
+    <p>Algunos detalles interesantes sobre la pseudoclase funcional :has():</p>
+
+    <ul>
+        <li>La pseudoclase <span class="azul">:has()</span> no se puede anidar dentro de otra <span class="azul">:has()</span>.</li>
+        <li>Los pseudoelementos, como <span class="azul">::before</span> o <span class="azul">::after</span>, no funcionan dentro de <span class="azul">:has()</span>.</li>
+        <li>La especificidad de <span class="azul">:has()</span> es el valor más alto de los selectores indicados por parámetro.</li>
+    </ul>
+
+</section>
+
+
+
+        <!-- Pseudoclase :root -->
+        <section class="section">
+            <h2>:root</h2>
+            <p>Selecciona el elemento raíz del documento (generalmente &lt;html&gt;). Es perfecto para definir variables CSS globales.</p>
+            
+            <div class="demo-container">
+                <div class="root-demo">
+                    <h4>Variables CSS definidas en :root</h4>
+                    <div class="color-showcase">
+                        <div class="color-item color-primary">Primary Color</div>
+                        <div class="color-item color-secondary">Secondary Color</div>
+                        <div class="color-item color-accent">Accent Color</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code code class="language-css">
+                    :root {<br>
+                    &nbsp;&nbsp;--primary-color: #00f5ff;<br>
+                    &nbsp;&nbsp;--secondary-color: #ff006e;<br>
+                    &nbsp;&nbsp;--accent-color: #8338ec;<br>
+                    &nbsp;&nbsp;--bg-dark: #0a0a0a;<br>
+                    &nbsp;&nbsp;--shadow-neon: 0 0 20px rgba(0, 245, 255, 0.5);<br>
+                    }<br><br>
+
+                    /* Usar las variables en cualquier parte */<br>
+                    .element {<br>
+                    &nbsp;&nbsp;background: var(--primary-color);<br>
+                    &nbsp;&nbsp;box-shadow: var(--shadow-neon);<br>
+                    }
+                </code></pre>
+            </div>
+
+            <div class="example-card">
+                <h4>💡 Ventajas de usar :root</h4>
+                <ul>
+                    <li>Centraliza todos los valores de diseño</li>
+                    <li>Facilita el cambio de temas</li>
+                    <li>Mejora la consistencia visual</li>
+                    <li>Simplifica el mantenimiento del código</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Más Pseudoclases Útiles -->
+        <section class="section">
+            <h2>Otras Pseudoclases Esenciales</h2>
+            
+            <div class="example-grid">
+                <div class="example-card">
+                    <h4>:empty</h4>
+                    <p>Selecciona elementos vacíos</p>
+                    <div class="code-block">
+                        <pre code class="language-css"><code>div:empty { 
+    display: none; 
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h4>:checked</h4>
+                    <p>Checkboxes/radios marcados</p>
+                    <div class="code-block">
+                        <pre><code code class="language-css">input:checked { 
+    transform: 
+    scale(1.2); 
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h4>:valid / :invalid</h4>
+                    <p>Validación de formularios</p>
+                    <div class="code-block">
+                        <pre><code code class="language-css">input:invalid { 
+    border-color: red; 
+}</code></pre>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <h2>Preguntas Frecuentes</h2>
+
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ❓ ¿Por qué :has() no funciona en mi navegador?
+                </div>
+                <div class="faq-answer">
+                    :has() es una característica relativamente nueva (CSS4). Funciona en:<br>
+                    • Chrome 105+ ✅<br>
+                    • Firefox 121+ ✅<br>
+                    • Safari 15.4+ ✅<br><br>
+                    Para navegadores antiguos, usa JavaScript como alternativa.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ❓ ¿Puedo combinar múltiples pseudoclases?
+                </div>
+                <div class="faq-answer">
+                    ¡Absolutamente! Puedes encadenar pseudoclases:<br>
+                    <div class="code-block">
+                        <code>button:hover:not(:disabled):first-child { }</code>
+                    </div>
+                    Esto selecciona un botón que está siendo hover, no está deshabilitado Y es el primer hijo.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ❓ ¿Cuándo usar :root en lugar de html?
+                </div>
+                <div class="faq-answer">
+                    :root tiene mayor especificidad que html y es más semánticamente correcto para variables CSS. Además, :root funciona en documentos XML, mientras que html solo en HTML.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ❓ ¿Las pseudoclases afectan el rendimiento?
+                </div>
+                <div class="faq-answer">
+                    Las pseudoclases básicas (:hover, :focus) tienen impacto mínimo. :has() puede ser más costosa porque debe evaluar descendientes. Úsala con moderación en elementos con muchos hijos.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ❓ ¿Cómo debuggear pseudoclases que no funcionan?
+                </div>
+                <div class="faq-answer">
+                    1. Verifica la sintaxis (un solo : para pseudoclases)<br>
+                    2. Usa las DevTools para inspeccionar el estado del elemento<br>
+                    3. Comprueba la especificidad CSS<br>
+                    4. Asegúrate de que el elemento sea del tipo correcto<br>
+                    5. Verifica compatibilidad del navegador
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 Consejos</h2>
+            
+            <div class="example-grid">
+                <div class="example-card pulse">
+                    <h4>💡 Tip #1: Especificidad</h4>
+                    <p>Las pseudoclases tienen la misma especificidad que las clases (0,0,1,0). Úsalas estratégicamente para evitar conflictos.</p>
+                </div>
+                
+                <div class="example-card pulse">
+                    <h4>🎯 Tip #2: Accesibilidad</h4>
+                    <p>Siempre incluye :focus junto con :hover para usuarios que navegan con teclado.</p>
+                </div>
+                
+                <div class="example-card pulse">
+                    <h4>⚡ Tip #3: Rendimiento</h4>
+                    <p>Evita pseudoclases complejas en elementos que cambian frecuentemente. Prefiere clases JavaScript cuando sea necesario.</p>
+                </div>
+                
+                <div class="example-card pulse">
+                    <h4>🎨 Tip #4: Animaciones</h4>
+                    <p>Combina pseudoclases con transitions para crear efectos suaves y profesionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+  <h2>💡 Actividad: Pseudoclases CSS - Ejercicios Prácticos</h2>
+
+  <ol>
+    <li>
+      <strong>:hover</strong><br />
+      Crea un botón que:
+      <ul>
+        <li>Cambie de color y tamaño cuando el mouse pase sobre él.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:focus</strong><br />
+      Crea un <code>&lt;input&gt;</code> que:
+      <ul>
+        <li>Muestre un borde brillante y cambie el fondo al hacer clic o tabular hacia él.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:active</strong><br />
+      Crea un botón que:
+      <ul>
+        <li>Se reduzca ligeramente de tamaño al presionarlo.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:checked</strong><br />
+      Usa un <code>&lt;checkbox&gt;</code> que:
+      <ul>
+        <li>Cambie el color del texto del <code>&lt;label&gt;</code> cuando esté marcado.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:nth-child()</strong><br />
+      Crea una lista con varios ítems donde:
+      <ul>
+        <li>Los elementos impares tengan un color de fondo distinto.</li>
+        <li>El tercer elemento sea más grande o con otro color llamativo.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:not()</strong><br />
+      Crea varias tarjetas <code>&lt;div class="card"&gt;</code> donde:
+      <ul>
+        <li>Se aplique un estilo solo a las que NO tengan clase <code>.especial</code>.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:empty</strong><br />
+      Agrega varios <code>&lt;div&gt;</code> vacíos y con contenido. Luego:
+      <ul>
+        <li>Oculta los elementos vacíos usando <code>:empty</code>.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:first-child / :last-child</strong><br />
+      Usa una lista u otra estructura donde:
+      <ul>
+        <li>El primer hijo tenga fondo verde.</li>
+        <li>El último tenga fondo rojo.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:invalid / :valid</strong><br />
+      Crea un formulario que:
+      <ul>
+        <li>Muestre en rojo los campos con errores (ej. email mal escrito).</li>
+        <li>Muestre en verde los campos válidos.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>:has()</strong> *(solo funciona en Chrome/Edge/Safari)*<br />
+      Aplica estilos al padre cuando:
+      <ul>
+        <li>Contenga un <code>.highlight</code>.</li>
+        <li>Tenga un <code>input:invalid</code>.</li>
+      </ul>
+      <p>📌 Si no funciona en tu navegador, indícalo en tu entrega.</p>
+    </li>
+  </ol>
+</section>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
